@@ -8,7 +8,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#define COUNT 10
 
 typedef char DataType;
 
@@ -64,11 +63,50 @@ void PrintBiTree(TreeNode *bt, int n) {
 }
 
 
+/*TODO
+ * 先是逐个定义每一个结点，特别是申明最后几次定义的结点的值
+ * 通过最后定义的值进行叶子结点的查找。
+ * Given a binary tree, we have to count number of leaf nodes in tree.
+ * A node is a leaf node, if it's left children and right children are NULL.
+ * Here, we will use recursion approach to count leaf nodes.
+ * We will traverse the binary tree using pre Order traversal and find the leaf nodes in left and right sub tree recursively.
+ * */
+
+/*
+ 返回叶子结点的数目
+ * */
+int countLeafNodes(TreeNode *bt){
+
+    /* 判断这个树是不是空树*/
+    if(bt == NULL)
+        return 0;
+
+    // 检查该树的左孩子结点
+    if(bt->leftChild == NULL && bt->rightChild == NULL){
+        return 1;
+    }
+
+    // 对于内部结点，返回该结点的右子树和左子树
+    return countLeafNodes(bt->leftChild) + countLeafNodes(bt->rightChild);
+}
+
+/*
+This function returns below
+            A
+           / \
+         B    C
+        / \  / \
+       D  E F  G
+         /   \
+        H     I
+*/
 int main() {
+
   TreeNode *root, *p, *pp;
 
   TreeNode *ppp; //定义存放第一次插入D的子结点暂时存储值
   TreeNode *pppp;//定义存放第一次插入F的子结点暂时存储值
+
   Initiate(&root);
   p = InsertLeftNode(root, 'A');
   p = InsertLeftNode(p, 'B');
@@ -90,10 +128,12 @@ int main() {
 
   InsertRightNode(pppp, 'I'); //实际上没有必要定义pppp进行赋值，因为此时p已经指向了F结点，可以直接插入I结点
   //InsertRightNode(p, 'I'); //该结果同样是成立的，可以正常给F结点插入I结点，进行插入的操作
+  InsertLeftNode(pppp, 'Z'); //此时进行了插入 Z 结点，测试叶子结点数目输出是否正确
 
-
-/*TODO curr指针所指结点的左孩子处插入新结点，以前的左孩子变成新节点的左孩子 */
+  printf("Number of leaf Nodes : %d \n \n", countLeafNodes(root)); //打印叶子结点的个数,上次作业补全后的二叉树一共有四个叶子结点
+  printf("该二叉树的叶子结点一共有: %d \n \n", countLeafNodes(root)); //打印叶子结点的个数,上次作业补全后的二叉树一共有四个叶子结点
 
   PrintBiTree(root->leftChild, 1);
   return 0;
+
 }
