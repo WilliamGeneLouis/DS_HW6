@@ -1,3 +1,21 @@
+/******************************************************
+ * Created by 廿Gene in 2022-04-23
+ *
+ * Note:
+ *  maxheight()
+    1. If tree is empty then return -1
+    2. Else
+         (a) Get the max depth of left subtree recursively
+            call maxDepth( root->LeftChild)
+         (b) Get the max depth of right subtree recursively
+            call maxDepth(  root->RightChild)
+         (c) Get the max of max depths of left and right
+            subtrees and add 1 to it for the current node.
+            max_depth = max(max dept of Left_Child, max depth of Right_Child) + 1
+         (d) Return max_depth
+ *
+ ******************************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -9,11 +27,13 @@ typedef struct treenode {
   struct treenode * rightChild;
 }TreeNode;
 
+
 void Initiate(TreeNode **root) {
   *root = (TreeNode *)malloc(sizeof(TreeNode));
   (*root)->leftChild = NULL;
   (*root)->rightChild = NULL;
 }
+
 
 /* curr指针所指结点的左孩子处插入新结点，以前的左孩子变成新节点的左孩子 */
 TreeNode *InsertLeftNode(TreeNode *curr, DataType x) {
@@ -28,6 +48,7 @@ TreeNode *InsertLeftNode(TreeNode *curr, DataType x) {
   curr->leftChild = s;
   return curr->leftChild;
 }
+
 
 /* curr指针所指结点的右孩子处插入新结点，以前的右孩子变成新节点的右孩子 */
 TreeNode *InsertRightNode(TreeNode *curr, DataType x) {
@@ -55,18 +76,6 @@ void PrintBiTree(TreeNode *bt, int n) {
   PrintBiTree(bt->leftChild, n+1);
 }
 
-/* maxheight()
-1. If tree is empty then return -1
-2. Else
-     (a) Get the max depth of left subtree recursively
-          call maxDepth( tree->left-subtree)
-     (b) Get the max depth of right subtree recursively
-          call maxDepth( tree->right-subtree)
-     (c) Get the max of max depths of left and right
-          subtrees and add 1 to it for the current node.
-         max_depth = max(max dept of left subtree, max depth of right subtree) + 1
-     (d) Return max_depth
- * */
 
 int maxheight(TreeNode *bt){
     if(bt == NULL) return -1; // 如果该结点为NULL直接返回错误
@@ -91,7 +100,6 @@ This function returns below
          /   \
         H     I
 */
-
 int main() {
 
   TreeNode *root, *p, *pp;

@@ -1,9 +1,15 @@
 /******************************************************
- * Created by David Song in 2016-5-11
+ * Created by 廿Gene in 2022-04-23
  *
  * Note:
- *   1. Link implementation of binary tree
- *   2. use a header node to simplifing implementation
+ * TODO
+ * 先是逐个定义每一个结点，特别是申明最后几次定义的结点的值
+ * 通过最后定义的值进行叶子结点的查找。
+ * Given a binary tree, we have to count number of leaf nodes in tree.
+ * A node is a leaf node, if it's left children and right children are NULL.
+ * Here, we will use recursion approach to count leaf nodes.
+ * We will traverse the binary tree using pre Order traversal and find the leaf nodes in left and right sub tree recursively.
+ *
  ******************************************************/
 
 #include <stdio.h>
@@ -62,15 +68,6 @@ void PrintBiTree(TreeNode *bt, int n) {
   PrintBiTree(bt->leftChild, n+1);
 }
 
-
-/*TODO
- * 先是逐个定义每一个结点，特别是申明最后几次定义的结点的值
- * 通过最后定义的值进行叶子结点的查找。
- * Given a binary tree, we have to count number of leaf nodes in tree.
- * A node is a leaf node, if it's left children and right children are NULL.
- * Here, we will use recursion approach to count leaf nodes.
- * We will traverse the binary tree using pre Order traversal and find the leaf nodes in left and right sub tree recursively.
- * */
 
 /*
  返回叶子结点的数目
@@ -135,5 +132,4 @@ int main() {
 
   PrintBiTree(root->leftChild, 1);
   return 0;
-
 }
