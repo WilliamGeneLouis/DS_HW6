@@ -81,12 +81,12 @@ int countLeafNodes(TreeNode *bt){
     if(bt == NULL)
         return 0;
 
-    // 检查该树的左孩子结点
+    // 检查该树的左右孩子结点
     if(bt->leftChild == NULL && bt->rightChild == NULL){
         return 1;
     }
 
-    // 对于内部结点，返回该结点的右子树和左子树
+    // 对于内部结点，返回该结点的右子树和左子树,意味着如果该结点至少有一个位置已经插入了一个结点
     return countLeafNodes(bt->leftChild) + countLeafNodes(bt->rightChild);
 }
 
@@ -130,8 +130,8 @@ int main() {
   //InsertRightNode(p, 'I'); //该结果同样是成立的，可以正常给F结点插入I结点，进行插入的操作
   InsertLeftNode(pppp, 'Z'); //此时进行了插入 Z 结点，测试叶子结点数目输出是否正确
 
-  printf("Number of leaf Nodes : %d \n \n", countLeafNodes(root)); //打印叶子结点的个数,上次作业补全后的二叉树一共有四个叶子结点
-  printf("该二叉树的叶子结点一共有: %d \n \n", countLeafNodes(root)); //打印叶子结点的个数,上次作业补全后的二叉树一共有四个叶子结点
+  //printf("Number of leaf Nodes : %d \n \n", countLeafNodes(root)); //打印叶子结点的个数,上次作业补全后的二叉树一共有四个叶子结点
+  printf("该二叉树的叶子结点一共有: %d个\n \n", countLeafNodes(root)); //打印叶子结点的个数,上次作业补全后的二叉树一共有四个叶子结点
 
   PrintBiTree(root->leftChild, 1);
   return 0;
