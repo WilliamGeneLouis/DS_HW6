@@ -2,8 +2,9 @@
  * Created by 廿Gene in 2022-04-23
  *
  * Note:
- * TODO：二叉树创建函数(输入带有空指针标记'$'的先序遍历序列，输出不带头节点的 二叉树)
- *  通过字符串(用户键盘输入)创建二叉树的函数
+ * TODO：建立一个后序遍历函数，利用MakeCharTree创建一个可以实现计算的函数
+ * 通过字符串(用户键盘输入)创建二叉树的函数
+ * 利用栈结构
  *
  ******************************************************/
 
@@ -77,6 +78,11 @@ void MakeCharTree(TreeNode **bt) { // 该函数从键盘输入二叉树并且创
         MakeCharTree((&(*bt)->leftChild)); //进行递归运算
         MakeCharTree((&(*bt)->rightChild));
     }
+}
+
+int RecPostOrder(TreeNode *bt){
+
+    return 0;
 }
 
 int main(){

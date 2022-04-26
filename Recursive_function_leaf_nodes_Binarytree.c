@@ -130,6 +130,6 @@ int main() {
   printf("Number of leaf Nodes : %d \n \n", countLeafNodes(root)); //打印叶子结点的个数,上次作业补全后的二叉树一共有四个叶子结点
   printf("该二叉树的叶子结点一共有: %d \n \n", countLeafNodes(root)); //打印叶子结点的个数,上次作业补全后的二叉树一共有四个叶子结点
 
-  PrintBiTree(root->leftChild, 1);
+  PrintBiTree(root, 1);
   return 0;
 }
