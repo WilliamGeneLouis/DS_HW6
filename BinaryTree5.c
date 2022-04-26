@@ -107,27 +107,38 @@ int RecPostOrder(TreeNode *bt){
     return 0;
 }
 
+
+int CRecPostOrder(TreeNode *bt){
+    if(bt->leftChild == NULL && bt->rightChild == NULL)
+    {
+        return bt->data - '0';
+    }
+    else
+    {
+        int l = CRecPostOrder(bt->leftChild);
+        int r = CRecPostOrder(bt->rightChild);
+        switch (bt->data){
+            case '+':
+                return l + r;
+            case '*':
+                return l * r;
+            case '-':
+                return l - r;
+            case '/':
+                return l / r;
+            default:
+                printf("Please input a correct number! ");
+                break;
+        }
+   }
+    return 0;
+}
+
 int main(){
   TreeNode *root;
   Initiate(&root);
   MakeCharTree(&root);
   PrintBiTree(root,1);
-  RecPostOrder(root);
-
-  printf("\n i = %d \n",i);
-  printf("\n j = %d \n",j);
-  int sum = 0;
-
-  printf("\n");
-  for(int z = 0; z < i; z++){
-      printf("%d\n",array[z]);
-      printf("%c\n",array1[z]);
-      if(array1[z] == '+' && z != 0) sum = sum + array[z+1];
-      else if(array1[z] == '+' && z == 0) sum = sum + array[z+1] + array[z];
-      else if(array1[z] == '*' && z == 0) sum = sum + array[z+1] * array[z];
-      else if(array1[z] == '*') sum = sum * array[z+1];
-      else sum = sum + 0;
-  }
-
- printf("\n Sum is %d",sum);
+  int x =  CRecPostOrder(root);
+  printf("\n x = %d \n",x);
 }
